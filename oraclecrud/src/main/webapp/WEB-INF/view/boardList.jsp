@@ -31,7 +31,7 @@
 				<td>${item.boardContent}</td>
 				<td>${item.boardWriter}</td>
 				<td style="width:80px">
-				<button class="btn btn-sm btn-outline-dark" onclick="location.href='/deleteBoard?boardId=${item.boardId}'" type="submit">삭제</button>
+				<button class="btn btn-sm btn-outline-dark" onclick="location.href='/deleteBoard?boardId=${item.boardId}'" type="button">삭제</button>
 				</td>
 			</tr>
 			</c:forEach>
