@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gdu.test.oraclecrud.mapper.BoardMapper">
+
+	<select id="selectboardList" resultType="gdu.test.oraclecrud.vo.Board">
+		SELECT
+	        board_id boardId,
+	        board_title boardTitle,
+	        board_content boardContent,
+	        board_writer boardWriter
+    	FROM board
+		ORDER BY board_id DESC
+	</select>
+	
+	<select id="selectboardOne" parameterType="int" resultType="gdu.test.oraclecrud.vo.Board">
+		SELECT
+			board_id boardId,
+	        board_title boardTitle,
+	        board_content boardContent,
+	        board_writer boardWriter
+    	FROM board
+		WHERE board_id = #{boardId}
+		ORDER BY board_id DESC
+	</select>
+	
+	<insert id="insertboard" parameterType="gdu.test.oraclecrud.vo.Board">
+		INSERT INTO BOARD (
+			board_id,
+	        board_title,
+	        board_content,
+	        board_writer
+		) VALUES(
+			BOARD_SEQ.nextval,
+			#{boardTitle},
+			#{boardContent},
+			#{boardWriter}
+		)
+	</insert>
+	
+	<select id="modifyboardList" parameterType="int" resultType="gdu.test.oraclecrud.vo.Board">
+		SELECT
+			board_id boardId,
+	        board_title boardTitle,
+	        board_content boardContent,
+	        board_writer boardWriter
+		FROM board
+		WHERE board_id = #{boardId}
+	</select>
+	
+	<update id="modifyboard" parameterType="gdu.test.oraclecrud.vo.Board">
+		UPDATE board
+		SET
+			board_title = #{boardTitle},
+			board_content = #{boardContent},
+			board_writer = #{boardWriter}
+		WHERE
+			board_id = #{boardId}
+	</update>
+	
+	<delete id="deleteboard" parameterType="int">
+		DELETE 
+		FROM board
+		WHERE board_id = #{boardId}
+	</delete>
+	
+</mapper>
